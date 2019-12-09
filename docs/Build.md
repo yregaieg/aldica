@@ -1,6 +1,6 @@
 # Build
 
-The aldica module project is based on a common Maven-based setup used by Acosix for Alfresco extension projects. The project is **not** using the Alfresco SDK for its various shortcomings, among them its extremely tight coupling with specific relase versions of Alfresco, inflexibility with regards to Maven build lifecycles and combination with other plugins for pre-/post-processing, and favouritism concerning AMP vs. JAR packaging.
+The aldica module project is based on a common Maven-based setup used by Acosix for Alfresco extension projects. The project is **not** using the Alfresco SDK for its various shortcomings, among them its extremely tight coupling with specific release versions of Alfresco, inflexibility with regards to Maven build lifecycles and combination with other plugins for pre-/post-processing, and favouritism concerning AMP vs. JAR packaging.
  
 ### General Build and Toolchains
 
@@ -34,6 +34,27 @@ In order to build the project it is necessary to provide a basic toolchain confi
     </configuration>
   </toolchain>
 </toolchains>
+```
+Ubuntu example:
+```
+<?xml version='1.0' encoding='UTF-8'?>
+<toolchains xmlns="http://maven.apache.org/TOOLCHAINS/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/TOOLCHAINS/1.1.0 http://maven.apache.org/xsd/toolchains-1.1.0.xsd">
+  <toolchain>
+    <type>jdk</type>
+    <provides>
+      <version>1.8</version>
+      <vendor>oracle</vendor>
+    </provides>
+    <configuration>
+      <jdkHome>/usr/lib/jvm/java-1.8.0-openjdk-amd64/</jdkHome>
+    </configuration>
+  </toolchain>
+</toolchains>
+```
+The build process will produce two amp files, namely:
+```
+./repository/target/aldica-repo-ignite-1.0.0.0-SNAPSHOT.amp
+./share/target/aldica-share-ignite-1.0.0.0-SNAPSHOT.amp
 ```
 
 ### Docker-based Integration Tests
