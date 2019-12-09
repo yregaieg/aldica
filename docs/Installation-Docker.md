@@ -1,22 +1,19 @@
 # Introduction
 
-Fetch the newest amps:
-* de.acosix.alfresco.utility.core.repo-1.{{ VERSION }}.amp
-* aldica-repo-ignite-{{ VERSION }}.amp
-* support-tools-repo-{{ VERSION }}.amp
+A `docker-compose.yml` file is provided in the `docker` subfolder of the project root.
+This `docker-compose.yml` file is based upon the upstream [Alfresco Content Services Community Deployment](https://github.com/Alfresco/acs-community-deployment) `docker-compose.yml` file.
 
-Place these into a folder called `amps`, and add a `Dockerfile` with the following contents next to it:
-```
-FROM alfresco/alfresco-content-repository-community:{{ VERSION }}
+# Prerequistes
+* Docker daemon and client
 
-ADD amps/de.acosix.alfresco.utility.core.repo-1.{{ VERSION }}.amp amps
-RUN java -jar alfresco-mmt/alfresco-mmt-6.0.jar install amps/de.acosix.alfresco.utility.core.repo-1.{{ VERSION }}.amp webapps/alfresco
+# Installation
+Running `docker-compose up` within the `docker` subfolder, will:
 
-ADD amps/aldica-repo-ignite-{{ VERSION }}.amp amps
-RUN java -jar alfresco-mmt/alfresco-mmt-6.0.jar install amps/aldica-repo-ignite-{{ VERSION }}.amp webapps/alfresco
+1. Download and build the [Acosix Alfresco Utility Core](https://github.com/Acosix/alfresco-utility) AMP.
+2. Build the aldica-ignite AMP, according to the documentation in the [build](./Build.md) section.
+3. Build an aldica-enabled Alfresco Repository and Share docker image.
+4. Start-up a docker-compose based Alfresco installation.
 
-ADD amps/support-tools-repo-{{ VERSION }}.amp amps
-RUN java -jar alfresco-mmt/alfresco-mmt-6.0.jar install amps/support-tools-repo-{{ VERSION }}.amp webapps/alfresco
+Note that this will take quite a while (~1 hour), depending on available CPU and network resources.
 
-RUN rm -rf webapps/alfresco-*.bak
-```
+At which point an aldica-enabled Alfresco stack should be runnning, and be available on `http://localhost:8080/`
