@@ -1,7 +1,7 @@
 # Introduction
-The Kubernetes installation utilizes the upstream [Alfresco Content Services Community Deployment](https://github.com/Alfresco/acs-community-deployment) [Helm](https://helm.sh/) chart.
+The Kubernetes installation utilises the upstream [Alfresco Content Services Community Deployment](https://github.com/Alfresco/acs-community-deployment) [Helm](https://helm.sh/) chart.
 
-# Prerequistes
+# Prerequisites
 * Kubernetes cluster with Ingress
 
 # Installation
@@ -14,7 +14,7 @@ Several steps are required to get an aldica-enabled Kubernetes installation, nam
 * Installing the Helm chart.
 
 ## Building the aldica-enabled docker images
-Building the aldica-enabled docker images can be done using the `Dockerfile`s within the `docker` subfolder of the project root, namely the files:
+Building the aldica-enabled docker images can be done using the `Dockerfile`s within the `docker` sub-folder of the project root, namely the files:
 
 * Dockerfile.repo
 * Dockerfile.share
