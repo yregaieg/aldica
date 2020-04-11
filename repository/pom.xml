@@ -168,6 +168,7 @@
                                     <env>
                                         <JAVA_OPTS><![CDATA[
                                             ${docker.tests.repositoryCommonJavaOpts}
+                                            -D${moduleId}.core.local.host=repository
                                         ]]></JAVA_OPTS>
                                     </env>
                                     <!-- add log directory mount to just the contentstore -->
@@ -201,6 +202,7 @@
                                     <env>
                                         <JAVA_OPTS><![CDATA[
                                             ${docker.tests.repositoryCommonJavaOpts}
+                                            -D${moduleId}.core.local.host=repository-2
                                         ]]></JAVA_OPTS>
                                     </env>
                                     <ports>
