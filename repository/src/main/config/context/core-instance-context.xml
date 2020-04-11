@@ -177,6 +177,7 @@
         class="${project.basePackage}.discovery.MemberTcpDiscoveryIpFinder">
         <property name="transactionService" ref="TransactionService" />
         <property name="attributeService" ref="AttributeService" />
+        <property name="addressResolver" ref="AddressResolver.${moduleId}.core" />
         <property name="initialMembers" value="\${${moduleId}.core.initialMembers}" />
     </bean>
 
