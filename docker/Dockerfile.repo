@@ -13,18 +13,19 @@ ADD share share
 
 # Substitute Acosix Alfresco parent version in the POM
 RUN sed -i 's/de.acosix.alfresco.maven.project.parent-6.1.2/de.acosix.alfresco.maven.project.parent-6.2.0/g' pom.xml
+# The above cannot be handled by templating in the POM since Maven does not allow this in the <parent> section
 
 # Build aldica and copy dependencies
 RUN mvn install -B -T2C -DskipTests -Dquality.findBugs.skip -pl common,repository
-RUN mvn dependency:copy -Dartifact=de.acosix.alfresco.utility:de.acosix.alfresco.utility.core.repo:1.1.0-SNAPSHOT:amp -DoutputDirectory=target -B -T2C
+RUN mvn dependency:copy -Dartifact=de.acosix.alfresco.utility:de.acosix.alfresco.utility.core.repo:1.1.0:amp -DoutputDirectory=target -B
 
 # Build aldica-enabled Alfresco Repository
 FROM alfresco/alfresco-content-repository-community:6.2.0-ga
 
 COPY --from=0 --chown=root:Alfresco /aldica/repository/target/aldica-repo-ignite-1.0.0.0-SNAPSHOT.amp .
-COPY --from=0 --chown=root:Alfresco /aldica/target/de.acosix.alfresco.utility.core.repo-1.1.0-20200221.175559-23.amp .
+COPY --from=0 --chown=root:Alfresco /aldica/target/de.acosix.alfresco.utility.core.repo-1.1.0.amp .
 
 USER root
-RUN java -jar alfresco-mmt/alfresco-mmt-6.0.jar install de.acosix.alfresco.utility.core.repo-1.1.0-20200221.175559-23.amp webapps/alfresco -nobackup
+RUN java -jar alfresco-mmt/alfresco-mmt-6.0.jar install de.acosix.alfresco.utility.core.repo-1.1.0.amp webapps/alfresco -nobackup
 RUN java -jar alfresco-mmt/alfresco-mmt-6.0.jar install aldica-repo-ignite-1.0.0.0-SNAPSHOT.amp webapps/alfresco -nobackup
 USER alfresco
