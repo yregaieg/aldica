@@ -119,6 +119,8 @@
         <docker.tests.repositoryDebugPort>8185</docker.tests.repositoryDebugPort>
         <docker.tests.repositoryPort2>8280</docker.tests.repositoryPort2>
         <docker.tests.repositoryDebugPort2>8285</docker.tests.repositoryDebugPort2>
+        <docker.tests.repositoryPort3>8380</docker.tests.repositoryPort3>
+        <docker.tests.repositoryDebugPort3>8385</docker.tests.repositoryDebugPort3>
 
         <docker.tests.sharePort>8181</docker.tests.sharePort>
         <docker.tests.shareDebugPort>8186</docker.tests.shareDebugPort>
